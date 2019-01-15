@@ -1,0 +1,136 @@
+h1,h2 {
+    text-align: center;
+    color:cadetblue;
+}
+
+p {
+    text-align: center;
+    color:cadetblue;
+    font-size: 1rem;
+}
+
+.card {
+    border-radius: 30px;
+    border : 2px solid cadetblue;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+body {
+    background-image: url("cell-3089947_1280.jpg"); 
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.modal-body{
+    background-color: white;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    width: 35rem;
+    border-radius: 30px;
+}
+
+.board {
+    background-color: white;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 40px;
+    width: 35rem;
+}
+
+.form-group {
+    color:black;
+
+}
+
+.card-link {
+    background-color: white;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    width: 35rem;
+    border-radius: 30px;
+    color:cadetblue;
+} 
+
+input {
+    width: 15rem;
+}
+
+label {
+
+    display: block;
+    width: 10rem;
+    float: left;
+
+}
+
+.btn-info {
+    border-radius: 30px;
+    background-color: cadetblue;
+    display : inline-block;
+}
+
+.centerdiv {
+    margin: 0 auto;
+    width: 100px;
+    text-align: center;
+
+}
+
+.error {
+    color:red;
+}
+
+.closebutton {
+    float : right;
+}
+
+#patient {
+    background-color: white;
+    color: cadetblue;
+    border : 2px solid cadetblue;
+}
+
+table {
+    border : 1px solid cadetblue;
+}
+
+th {
+    border: 1px solid cadetblue;
+    text-align: center;
+}
+
+td {
+    border-bottom: 1px solid cadetblue;
+    text-align: center;
+}
+
+caption {
+    caption-side: top;
+    color : cadetblue;
+    text-align: center;
+}
+
+footer {
+    background-color: white;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+img {
+    width: 50%;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+.parking {
+    float: right;
+}
+
+.card-id {
+    float: left;
+}
