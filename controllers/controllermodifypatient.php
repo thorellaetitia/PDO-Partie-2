@@ -12,6 +12,7 @@ require 'models/modelPatients.php';
 $modifypatientObj = new patients();
 $modifypatientObj->id = $_GET['id'];
 $resultQueryModifyPatient=$modifypatientObj->lastInsertId();
+$showform=true;
 
 // On édite les regex
 $regexLetter = '/^[a-zA-ZÄ-ÿ\-]+$/'; //autorise les lettres alplhabet majuscules et minuscules et les accents
@@ -87,9 +88,11 @@ if (isset($_POST['submit']) && (isset($_GET['id']) && count($errorsArray) == 0 )
     $modifypatientObj->phone = $phone;
     $modifypatientObj->mail = $mail;
     $modifypatientObj->modifypatient();
+    $showform=false;
     if ($modifypatientObj->modifypatient() == true) {
         $messagemodifvalidee='la modification a bien été réalisée';
             }
+ 
 }
 
 

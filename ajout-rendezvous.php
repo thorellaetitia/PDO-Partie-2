@@ -21,57 +21,84 @@ include_once('controllers/controllerajoutrendez-vous.php');
     <body>
         <?php
         include_once('navbar.php');
-        ?>      
-        <div class="modal-body">
-            <!--form-->
-            <div class="closebutton">
-                <a href="index1.php">Fermer</a>
+        ?>  
+        <div class="container-fluid">
+            <div class="row">
+
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <div class="modal-body">
+                        <!--form-->
+                        <div class="closebutton">
+                            <a href="index1.php">Fermer</a>
+                        </div>
+                        <?php if ($showform) { ?>
+                            <div class="card-body">
+                                <form method="post" action="ajout-rendezvous.php" enctype="multipart/form-data">
+                                    <div><p><strong>Ajouter un rendez-vous</strong></p></div>
+
+                                    <div class="form-group">
+                                        Patient: <select required name="idpatients" value="<?= (isset($idpatients)) ? $idpatients : ''; ?>">
+                                            <option disabled selected>Veuillez choisir un patient</option> 
+                                            <?php foreach ($Arraypatients as $patients) { ?>
+                                                <option value="<?= $patients->id ?>"><?= $patients->id ?> <?= $patients->lastname ?> <?= $patients->firstname ?></option>
+                                                <?php
+                                            }
+                                            ?>  
+                                            <span class="error"><?= isset($errorsArray['idpatients']) ? $errorsArray['idpatients'] : ''; ?></span>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="date">Date : </label> 
+                                        <input type="date" name="date" id="date" placeholder="ex jj/mm/yyyy" value="<?= (isset($date)) ? $date : ''; ?>" required /><br>
+                                        <span class="error"><?= isset($errorsArray['date']) ? $errorsArray['date'] : ''; ?></span>
+                                    </div> 
+                                    <div class="form-group">
+                                        Heure : <select name="hour" value="<?= (isset($hour)) ? $hour : ''; ?>">
+                                            <option disabled selected>Veuillez choisir un créneau</option> 
+                                            <option value="08:30:00">08h30</option>
+                                            <option value="09:00:00">09h00</option>
+                                            <option value="09:30:00">09h30</option>
+                                            <option value="10:00:00">10h00</option>
+                                            <option value="10:30:00">10h30</option>
+                                            <option value="11:00:00">11h00</option>
+                                            <option value="11:30:00">11h30</option>
+                                            <option value="12:00:00">12h00</option>
+                                            <option value="14:00:00">14h00</option>
+                                            <option value="14:30:00">14h30</option>
+                                            <option value="15:00:00">15h00</option>
+                                            <option value="15:30:00">15h30</option>
+                                            <option value="16:00:00">16h00</option>
+                                            <option value="16:30:00">16h30</option>
+                                            <option value="17:00:00">17h00</option>
+                                            <option value="17:30:00">17h30</option>
+                                            <option value="18:00:00">18h00</option>
+                                            <option value="18:30:00">18h30</option>
+                                        </select>
+                                        <span class="error"><?= isset($errorsArray['hour']) ? $errorsArray['hour'] : ''; ?></span>
+                                    </div>
+                                    <div class="centerdiv">
+                                        <input class="btn btn-info" type="submit" name="submit" value="Créer un rendez-vous"/>
+                                    </div>
+                                </form>
+                            <?php } else { ?>
+                                <p>Création du RDV validée</p>
+                            <?php } ?>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-            <div><p><strong>Ajouter un rendez-vous</strong></p></div>
-            <form method="post" action="ajoutrendez-vous.php" enctype="multipart/form-data">
-
-                <div class="form-group">
-                    <label for="lastName">Nom : </label>
-                    <input type="text" name="lastName" id="lastName" placeholder="ex : Dupont" value="<?= (isset($lastName)) ? $lastName : ''; ?>" required /><br>
-                    <span class="error"><?= isset($errorsArray['lastName']) ? $errorsArray['lastName'] : ''; ?></span>
-                </div>
-                <div class="form-group">
-                    <label for="firstName">Prénom :</label> 
-                    <input type="text" name="firstName" id="firstName" placeholder="ex : Stéphane" value="<?= (isset($firstName)) ? $firstName : ''; ?>" required /><br>
-                    <span class="error"><?= isset($errorsArray['firstName']) ? $errorsArray['firstName'] : ''; ?></span>
-                </div>
-                <div class="form-group">
-                    <label for="date">Date : </label> 
-                    <input type="text" name="date" id="date" placeholder="ex. 25/12/2000" value="<?= (isset($date)) ? $date : ''; ?>" required /><br>
-                    <span class="error"><?= isset($errorsArray['date']) ? $errorsArray['date'] : ''; ?></span>
-                </div>
-                <div class="form-group">
-                    <label for="time">Horaire : </label> 
-                    <input type="text" name="time" id="phone" placeholder="" value="<?= (isset($time)) ? $time : ''; ?>" required /><br>
-                    <span class="error"><?= isset($errorsArray['time']) ? $errorsArray['time'] : ''; ?></span>
-                </div>                              
-                <div class="form-group">
-                    Service : <select required name="department">
-                        <option value="" disabled selected>Veuillez faire votre choix</option>   
-                        <option value="skinpathologie">Dermatologie</option>
-                        <option value="eyespathologie">Ophtalmologie</option>
-                    </select>
-                </div>
-                <div class="centerdiv">
-                    <input class="btn btn-info" type="submit" name="submit" value="Créer un rendez-vous"/>
-                </div>
-
-            </form>
-
             <!--fin du form-->
-        </div>
+
 
     </body>
     <script src="http://tympanus.net/Blueprints/FullWidthTabs/js/cbpFWTabs.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css" rel="stylesheet" type="text/css" />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-    <script src="script.js"></script>
+    <script src="script_1.js"></script>
 </body>
 </html>

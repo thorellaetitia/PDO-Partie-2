@@ -5,7 +5,7 @@ require 'models/modelPatients.php';
 
 //on instancie un nouvel objet clients
 $patientsObj = new patients();
-
+$showform=true;
 // On édite les regex
 $regexLetter = '/^[a-zA-ZÄ-ÿ\-]+$/'; //autorise les lettres alplhabet majuscules et minuscules et les accents
 $regextitle = '/^[A-ZÄ-ÿ\-]+$/'; //autorise les lettres de l'alphabet seulement les majuscules et accents
@@ -14,11 +14,11 @@ $regexNumber = '/^[0-9]{2}+$/'; //autorise uniquement les chiffres et seulement 
 $regexPhonenumber = '/^((\+)33|0)[1-9](\d{2}){4}+$/'; //autorise uniquement les chiffres soir +33 ou 0 \d signifie [0-9]
 //regexdate autorise pour le JJ j'autorise le 0 et entre 1 et 9 (ex02) ou bien entre 1 et 9 (ex14)ou bien entre 10 et 19 ou bien
 //20 et 29 ou bien 30 et 31 pour le MM j'autorise entre 01 et 09 puis 10 à 12 pour le YYYY j'autorise 2018 2019 ou 2020 à 2022//
-$regexdate = '/^(0[1-9]|([1-9])|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/(19([1-9][1-9]|2000))$/'; //autorise le format date ex 12/01/2018
+$regexdate = '/^(0[1-9]|([1-9])|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/(19([1-9][0-9])|(20([0-9][0-9])))$/'; //autorise le format date ex 12/01/2018
 $regexMail = '/^[a-z0-9.-_]+@[a-z0-9.-_]+.[a-z]{2,6}$/'; //autorise les lettres et chiffres .-_
 //on déclare un tableau d'erreurs vide
 $errorsArray = [];
-$addsuccess=false;
+
 
 if (isset($_POST['lastName'])) {
     $lastName = htmlspecialchars($_POST['lastName']);
@@ -82,6 +82,7 @@ if (isset($_POST['submit']) && count($errorsArray) == 0) {
     $patientsObj->mail = $mail;
     //j'éxécute la méthode create patients avec les attributs précedement stockés
     $patientsObj->CreatePatients();
-    $addsuccess=true;
+    $showform=false;
+    
     
 }

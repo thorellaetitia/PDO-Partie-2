@@ -1,5 +1,5 @@
 <?php
-include_once('controllers/controllerindex3.php');
+include_once('controllers/controllerprofil-patients.php');
 ?>
 <!DOCTYPE HTML>
 <html lang="fr">
@@ -20,18 +20,19 @@ include_once('controllers/controllerindex3.php');
         <?php
         include_once('navbar.php');
         ?>
-        <h1>Profil des patients</h1>
+
 <!--        <p>Créer une page profil-patient.php. Elle doit permettre d'afficher
-            toutes les informations d'un patient. Elle doit être accessible 
-            depuis la page liste-patients.php et afficher les informations du
-            patient sélectionné.</p> -->
+      toutes les informations d'un patient. Elle doit être accessible 
+      depuis la page liste-patients.php et afficher les informations du
+      patient sélectionné.</p> -->
 
         <div class="container-fluid">
             <div class="row">
 
-                <div class="col-sm-12 col-md-4 col-lg-4">
+                <div class="col-sm-12 col-md-12 col-lg-12">
                     <div class="card" id="patient">
                         <div class="card-body">
+                            <p>Profil des patients</p>
                             <div class="closebutton">
                                 <a href="index1.php">Fermer</a>
                             </div>

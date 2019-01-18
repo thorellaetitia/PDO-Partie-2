@@ -1,5 +1,5 @@
 <?php
-include_once('controllers/controllerindex.php');
+include_once('controllers/controllerajout-patient.php');
 ?>
 
 <!DOCTYPE HTML>
@@ -24,21 +24,13 @@ include_once('controllers/controllerindex.php');
         ?>      
         <div class="modal-body">
             <!--form-->
-            <div class="closebutton">
+            <div class="closebutton">                
                 <a href="index1.php">Fermer</a>
             </div>
-            <?php
-            if ($addsuccess) { ?>
-            <p>La création du patient est validée</p>
-                <div><p><strong>Création d'un patient</strong></p></div>
-                <form method="post" action="ajout-patient.php" enctype="multipart/form-data">
-                    <div class="form-group">
-                        Civilité : <select required name="civilite">
-                            <option value="" disabled selected>Veuillez faire votre choix</option>   
-                            <option value="Monsieur">Monsieur</option>
-                            <option value="Madame">Madame</option>
-                        </select>
-                    </div>
+            <?php if ($showform) { ?>
+                <form method="post" action="ajout-patient.php"  id="formulaire" enctype="multipart/form-data">
+                    <div><p><strong>Création d'un patient</strong></p></div>
+
                     <div class="form-group">
                         <label for="lastName">Votre nom : </label>
                         <input type="text" name="lastName" id="lastName" placeholder="ex : Dupont" value="<?= (isset($lastName)) ? $lastName : ''; ?>" required /><br>
@@ -67,12 +59,13 @@ include_once('controllers/controllerindex.php');
                     <div class="centerdiv">
                         <input class="btn btn-info" type="submit" name="submit" value="Créer un patient"/>
                     </div>
-                <?php
-                }
-                ?>
-            </form>
 
-            <!--fin du form-->
+                </form>
+                <!--fin du form-->
+
+            <?php } else { ?>
+                <p>Création du patient validée</p>
+            <?php } ?>
         </div>
 
     </body>
@@ -80,6 +73,6 @@ include_once('controllers/controllerindex.php');
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-    <script src="script.js"></script>
+    <script src="script_1.js"></script>
 </body>
 </html>

@@ -10,6 +10,7 @@
             <a class="nav-item nav-link active" href="ajout-patient.php">Créer un patient<span class="sr-only">(current)</span></a>
             <a class="nav-item nav-link" href="liste-patients.php">Afficher les patients</a>
             <a class="nav-item nav-link" href="ajout-rendezvous.php">Ajouter un RDV</a>
+            <a class="nav-item nav-link" href="liste-rendezvous.php">Afficher les RDV</a>
         </div>
     </div>
 </nav>

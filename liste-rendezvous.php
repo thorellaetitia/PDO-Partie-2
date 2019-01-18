@@ -1,5 +1,5 @@
 <?php
-include_once('controllers/controllerliste-patients.php');
+include_once('controllers/controllerliste-rendezvous.php');
 ?>
 
 <!DOCTYPE HTML>
@@ -15,7 +15,7 @@ include_once('controllers/controllerliste-patients.php');
         <link href="https://fonts.googleapis.com/css?family=Monoton" rel="stylesheet" />
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
         <link rel="stylesheet" href="style.css" />
-        <title>exercice_2 partie 2- PDO</title>  
+        <title>exercice_6 partie 2- PDO</title>  
     </head>
     <body>
         <?php
@@ -24,27 +24,29 @@ include_once('controllers/controllerliste-patients.php');
 
         <div class="container-fluid">
             <div class="row align-items-center">
-                <div class="col-lg-12" id="patient">
+                <div class="col-sm-12 col-md-12 col-lg-12" id="patient">
                     <div>
                         <table class="table table-striped" >
+                            
                             <div class="closebutton">
                                 <a href="index1.php">Fermer</a>
                             </div>
-                            <caption>Liste des patients</caption>
+                            <div>
+                                <a href="ajout-rendezvous.php">Création RDV</a>
+                            </div>
+                            <caption>Liste des rendez-vous</caption>
                             <tr>
                                 <th> N° patient </th>
-                                <th> Prénom </th>
-                                <th>  Nom </th>
-                                <th>Profil patient</th>
+                                <th> Date/heure</th>
+                                <th> Création de RDV</th>
                             </tr>
                             <?php
-                            foreach ($Arraypatients as $patients) {
+                            foreach ($arrayAllAppointments as $appointments) {
                                 ?>
                                 <tr>
-                                    <td><?= $patients->id ?></td>
-                                    <td><?= $patients->firstname ?></td>
-                                    <td> <?= $patients->lastname ?></td>
-                                    <td><a class="card-link" href="profil-patients.php?id=<?= $patients->id ?>">Voir</a></td>
+                                    <td><?= $appointments->idPatients ?></td>
+                                    <td><?= $appointments->dateHour ?></td>
+                                    <td><a class="card-link" href="rendezvous.php">Détail RDV</a></td>
                                 </tr>
                                 <?php
                             }
@@ -65,3 +67,5 @@ include_once('controllers/controllerliste-patients.php');
 
     </body>
 </html>
+
+
