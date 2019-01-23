@@ -46,7 +46,7 @@ include_once('controllers/controllerliste-rendezvous.php');
                                 <tr>
                                     <td><?= $appointments->idPatients ?></td>
                                     <td><?= $appointments->dateHour ?></td>
-                                    <td><a class="card-link" href="rendezvous.php">Détail RDV</a></td>
+                                    <td><a class="card-link" href="rendezvous.php?idAppointment=<?= $appointments->id ?>">Détail RDV</a></td>
                                 </tr>
                                 <?php
                             }

@@ -25,7 +25,7 @@ class appointments extends database { //on crée une class appointments dont le 
         return $appointmentsList->execute();
     }
 
-   //exercice6
+    //exercice6
     //on crée une fonction qui va nous permettre d'afficher les RDV
     //pas d'injection d'éléments donc pas besoin de préparer ni éxécuter ni de bindvalue
     //je crée ma fonction ShowAllAppointments
@@ -41,7 +41,37 @@ class appointments extends database { //on crée une class appointments dont le 
         return $arrayAllAppointments;
         //le résultat = on lui demande d'aller chercher les éléments firstname,lastname...etc donc il faut 
         //faire un fetchALL en utilisant l'objet PDO.
-    } 
-    
-    
+    }
+
+    //exercice 7
+    public function displayDetailsAppointmentById() {
+        //je fais ma requête dans une variable $query
+        $query = 'SELECT appointments.id AS idAppointment, DATE_FORMAT(dateHour, "%Y-%m-%d") AS date, DATE_FORMAT(dateHour, "%H:%i") AS hour, lastname, firstname, phone, mail, patients.id'
+                . ' FROM appointments'
+                . ' INNER JOIN patients'
+                . ' ON appointments.idPatients = patients.id WHERE appointments.id = :idAppointment';
+        //le résultat de ma requête je le stocke dans $showProfileList
+        //$this = correspond aux attributs de ma classe ex patients, à l'élément de ma classe (table patients) 
+        $resultDetailsAppointment = $this->database->prepare($query);
+        //avec le this=ATTRIBUT il faut cibler l'élément de ma classe 
+        //Je lie le marqueur nominatif id à l'attribut id
+        $resultDetailsAppointment->bindValue(':idAppointment', $this->id, PDO::PARAM_INT);
+        $resultDetailsAppointment->execute();
+        $arrayProfileAppointment = $resultDetailsAppointment->fetch(PDO::FETCH_OBJ);
+        return $arrayProfileAppointment;
+        //le résultat = on lui demande d'aller chercher les éléments firstname,lastname...etc donc il faut 
+        //faire un fetchALL en utilisant l'objet PDO.
+    }
+
+    //exercice8
+    public function modifyAppointment() {
+        $query = 'UPDATE `appointments` SET `idPatients` = :idpatients,'
+                . '`dateHour` = :dateHour WHERE `id` = :idAppointment';
+        $resultQueryModifyAppointment = $this->database->prepare($query);
+        $resultQueryModifyAppointment->bindValue(':idPatients', $this->idpatients, PDO::PARAM_INT);
+        $resultQueryModifyAppointment->bindValue(':dateHour', $this->dateHour, PDO::PARAM_STR);
+        $resultQueryModifyAppointment->bindValue(':idAppointment', $this->id, PDO::PARAM_STR);
+        return $resultQueryModifyAppointment->execute();
+    }
+
 }
