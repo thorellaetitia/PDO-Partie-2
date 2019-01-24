@@ -42,6 +42,7 @@ include_once('controllers/controllerprofil-patients.php');
                             <p class="card-text">Date de naissance : <?= $arrayProfilePatient->birthdate ?></p>
                             <p class="card-text">Tel : <?= $arrayProfilePatient->phone ?></p>
                             <p class="card-text"> Mail : <?= $arrayProfilePatient->mail ?></p>
+                            <p class="card-text"> RDV : <?= $appointment->dateHour ?></p>
                             <a href="modifypatient.php?id=<?= $arrayProfilePatient->id ?>" class="card-link">Modifier le patient</a>
                         </div>
                     </div>

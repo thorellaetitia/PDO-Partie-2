@@ -63,14 +63,30 @@ class appointments extends database { //on crée une class appointments dont le 
         //faire un fetchALL en utilisant l'objet PDO.
     }
 
+    public function displayAppointmentByIdPatient() {
+        //je fais ma requête dans une variable $query
+        $query = 'SELECT * FROM appointments WHERE id=:id';
+        //le résultat de ma requête je le stocke dans $showProfileList
+        //$this = correspond aux attributs de ma classe ex patients, à l'élément de ma classe (table patients) 
+        $resultDisplayAppointment = $this->database->prepare($query);
+        //avec le this=ATTRIBUT il faut cibler l'élément de ma classe 
+        $resultDisplayAppointment->bindValue(':id', $this->id, PDO::PARAM_INT);
+        //Je lie le marqueur nominatif id à l'attribut id
+        $resultDisplayAppointment->execute();
+        $appointment = $resultDisplayAppointment->fetch(PDO::FETCH_OBJ);
+        return $appointment;
+        //le résultat = on lui demande d'aller chercher les éléments firstname,lastname...etc donc il faut 
+        //faire un fetchALL en utilisant l'objet PDO.
+    }
+
     //exercice8
     public function modifyAppointment() {
         $query = 'UPDATE `appointments` SET `idPatients` = :idpatients,'
                 . '`dateHour` = :dateHour WHERE `id` = :idAppointment';
         $resultQueryModifyAppointment = $this->database->prepare($query);
-        $resultQueryModifyAppointment->bindValue(':idPatients', $this->idpatients, PDO::PARAM_INT);
+        $resultQueryModifyAppointment->bindValue(':idpatients', $this->idpatients, PDO::PARAM_INT);
         $resultQueryModifyAppointment->bindValue(':dateHour', $this->dateHour, PDO::PARAM_STR);
-        $resultQueryModifyAppointment->bindValue(':idAppointment', $this->id, PDO::PARAM_STR);
+        $resultQueryModifyAppointment->bindValue(':idAppointment', $this->id, PDO::PARAM_INT);
         return $resultQueryModifyAppointment->execute();
     }
 

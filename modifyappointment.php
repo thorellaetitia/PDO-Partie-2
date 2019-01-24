@@ -32,7 +32,7 @@ include_once('controllers/controllermodifyappointment.php');
                         </div>
                         <?php if ($showform) { ?>
                             <div class="modal-body">
-                                <form method="post" action="modifyappointment.php">
+                                <form method="post" action="modifyappointment.php?idAppointment=<?= $arrayDetailsAppointment->idAppointment ?>">
                                     <div><p><strong>Modifier un rendez-vous</strong></p></div>
 
                                     <div class="form-group">
@@ -53,7 +53,7 @@ include_once('controllers/controllermodifyappointment.php');
                                     </div> 
                                     <div class="form-group">
                                         Heure : <select name="hour" >
-                                            <option value="<?= (isset($arrayDetailsAppointment->hour)) ? $arrayDetailsAppointment->hour : ''; ?>" disabled selected><?= (isset($arrayDetailsAppointment->hour)) ? $arrayDetailsAppointment->hour : 'Veuillez choisir un créneau'; ?></option> 
+                                            <option value="<?= (isset($arrayDetailsAppointment->hour)) ? $arrayDetailsAppointment->hour : ''; ?>" selected><?= (isset($arrayDetailsAppointment->hour)) ? $arrayDetailsAppointment->hour : 'Veuillez choisir un créneau'; ?></option> 
                                             <option value="08:30:00">08h30</option>
                                             <option value="09:00:00">09h00</option>
                                             <option value="09:30:00">09h30</option>
