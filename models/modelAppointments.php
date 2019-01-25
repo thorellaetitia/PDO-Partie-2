@@ -63,6 +63,7 @@ class appointments extends database { //on crée une class appointments dont le 
         //faire un fetchALL en utilisant l'objet PDO.
     }
 
+    //exercice9
     public function displayAppointmentByIdPatient() {
         //je fais ma requête dans une variable $query
         $query = 'SELECT * FROM appointments WHERE id=:id';
@@ -88,6 +89,19 @@ class appointments extends database { //on crée une class appointments dont le 
         $resultQueryModifyAppointment->bindValue(':dateHour', $this->dateHour, PDO::PARAM_STR);
         $resultQueryModifyAppointment->bindValue(':idAppointment', $this->id, PDO::PARAM_INT);
         return $resultQueryModifyAppointment->execute();
+    }
+
+    //exercice10
+    public function deleteAppointment() {
+        $query = 'DELETE FROM `appointments` WHERE `id`=:id';
+        //on commence une transaction et désactivation de l'autocommit =begintransaction
+        $this->database->beginTransaction();
+        $resultQueryDeleteAppointment = $this->database->prepare($query);
+        $resultQueryDeleteAppointment->bindValue(':id', $this->id, PDO::PARAM_INT);
+        $resultQueryDeleteAppointment->execute();
+        //on valide les modifications et la connexion a la bdd = retour en mode auto-commit =commit
+        $this->database->commit();
+        //on s'apercoit d'une erreur et on annule les modifications =rollBack
     }
 
 }
