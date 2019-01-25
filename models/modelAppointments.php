@@ -66,7 +66,7 @@ class appointments extends database { //on crée une class appointments dont le 
     //exercice9
     public function displayAppointmentByIdPatient() {
         //je fais ma requête dans une variable $query
-        $query = 'SELECT * FROM appointments WHERE id=:id';
+        $query = 'SELECT * FROM appointments INNER JOIN patients ON appointments.idPatients = patients.id WHERE patients.id = :id';
         //le résultat de ma requête je le stocke dans $showProfileList
         //$this = correspond aux attributs de ma classe ex patients, à l'élément de ma classe (table patients) 
         $resultDisplayAppointment = $this->database->prepare($query);

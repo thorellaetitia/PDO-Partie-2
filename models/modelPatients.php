@@ -84,14 +84,15 @@ class patients extends database { //on crée une class clients dont le parent es
     
     //exercice11
     public function deletePatientsById() {
-        $query = 'DELETE FROM `appointments` WHERE `id`=:id';
+        $query = 'DELETE FROM `patients` WHERE `id`=:id';
         //on commence une transaction et désactivation de l'autocommit =begintransaction
         $this->database->beginTransaction();
-        $resultQueryDeleteAppointment = $this->database->prepare($query);
-        $resultQueryDeleteAppointment->bindValue(':id', $this->id, PDO::PARAM_INT);
-        $resultQueryDeleteAppointment->execute();
+        $resultQueryDeletePatient = $this->database->prepare($query);
+        $resultQueryDeletePatient->bindValue(':id', $this->id, PDO::PARAM_INT);
+        $resultQueryDeletePatient->execute();
         //on valide les modifications et la connexion a la bdd = retour en mode auto-commit =commit
         $this->database->commit();
         //on s'apercoit d'une erreur et on annule les modifications =rollBack
     }
+    
 }

@@ -46,7 +46,7 @@ include_once('controllers/controllerliste-patients.php');
                                     <td><?= $patients->firstname ?></td>
                                     <td> <?= $patients->lastname ?></td>
                                     <td><a class="card-link" href="profil-patients.php?id=<?= $patients->id ?>">Voir</a></td>
-                                    <td><a class="card-link" href="liste-patients.php?id=<?= $patients->id ?>"><img src="garbage.svg" alt="delete" /></a></td>
+                                    <td><a class="card-link" href="liste-patients.php?id=<?= $patients->id ?>"><img id="trash" src="garbage.svg" alt="delete" /></a></td>
                                 </tr>
                                 <?php
                             }
