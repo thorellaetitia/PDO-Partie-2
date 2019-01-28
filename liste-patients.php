@@ -22,6 +22,12 @@ include_once('controllers/controllerliste-patients.php');
         include_once('navbar.php');
         ?>
 
+        <!--        création d'un champ de recherche-->
+        <form action = "liste-patients.php" method = "get" id="searchnav">
+            <input type = "search" name = "terme">
+            <input type = "submit" name = "search" value = "Rechercher">
+        </form>
+
         <div class="container-fluid">
             <div class="row align-items-center">
                 <div class="col-lg-12" id="patient">

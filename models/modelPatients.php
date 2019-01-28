@@ -74,14 +74,14 @@ class patients extends database { //on crée une class clients dont le parent es
         $resultQueryModifyPatient->bindValue(':id', $this->id, PDO::PARAM_INT);
         $resultQueryModifyPatient->bindValue(':lastName', $this->lastName, PDO::PARAM_STR);
         $resultQueryModifyPatient->bindValue(':firstName', $this->firstName, PDO::PARAM_STR);
-        $date= DateTime::createFromFormat('d/m/Y', $this->birthDate); 
+        $date = DateTime::createFromFormat('d/m/Y', $this->birthDate);
         $dateus = $date->format('Y-m-d');
         $resultQueryModifyPatient->bindValue(':birthDate', $dateus, PDO::PARAM_STR);
         $resultQueryModifyPatient->bindValue(':phone', $this->phone, PDO::PARAM_STR);
         $resultQueryModifyPatient->bindValue(':mail', $this->mail, PDO::PARAM_STR);
         return $resultQueryModifyPatient->execute();
     }
-    
+
     //exercice11
     public function deletePatientsById() {
         $query = 'DELETE FROM `patients` WHERE `id`=:id';
@@ -94,5 +94,15 @@ class patients extends database { //on crée une class clients dont le parent es
         $this->database->commit();
         //on s'apercoit d'une erreur et on annule les modifications =rollBack
     }
-    
+
+    //exercice12
+    public function searchPatient() {
+        $query = 'SELECT * FROM patients WHERE lastName LIKE :search2 or firstName LIKE :search1';
+        $resultQuerySearchPatient = $this->database->prepare($query);
+        $resultQuerySearchPatient->bindValue(':search1', '%' . $this->firstName . '%', PDO::PARAM_STR);
+        $resultQuerySearchPatient->bindValue(':search2', '%' . $this->lastName . '%', PDO::PARAM_STR);
+        $resultQuerySearchPatient->execute();
+        return $resultQuerySearchPatient->fetchAll(PDO::FETCH_OBJ);
+    }
+
 }
